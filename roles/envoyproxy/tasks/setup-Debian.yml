@@ -28,12 +28,11 @@
 #         dest: /usr/share/keyrings/getenvoy-keyring.gpg
 
     - name: Add Envoy apt key (alternative for older systems without SNI).
-      shell: 
+      command: /usr/bin curl -sL 'https://deb.dl.getenvoy.io/public/gpg.{{ envoy_gpg_key }}.key' | sudo gpg --dearmor -o /usr/share/keyrings/getenvoy-keyring.gpg
 #        curl -sSL {{ envoy_apt_gpg_key }} | sudo apt-key add -
-        /usr/bin curl -sL 'https://deb.dl.getenvoy.io/public/gpg.{{ envoy_gpg_key }}.key' | sudo gpg --dearmor -o /usr/share/keyrings/getenvoy-keyring.gpg
-#       args:
-#         warn: false
-#       when: add_repository_key is failed
+      args:
+        warn: false
+      when: add_repository_key is failed
 #       tags: ["skip_ansible_lint"]
 
     - name: Update Envoy Repository | apt source
