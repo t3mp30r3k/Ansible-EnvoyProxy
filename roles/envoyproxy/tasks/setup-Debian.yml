@@ -21,7 +21,7 @@
       ignore_errors: "{{ envoy_apt_ignore_key_error }}"
 
     - name: Add Envoy apt key (alternative for older systems without SNI).
-      shell: >
+      command: 
 #        curl -sSL {{ envoy_apt_gpg_key }} | sudo apt-key add -
         curl -sSL 'https://deb.dl.getenvoy.io/public/gpg.{{ envoy_gpg_key }}.key' | sudo gpg --dearmor -o /usr/share/keyrings/getenvoy-keyring.gpg
       args:
