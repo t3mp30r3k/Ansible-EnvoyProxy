@@ -16,14 +16,13 @@
   
     - name: Copy Envoy Script to /tmp
       template:
-      src: "/roles/envoyproxy/templates/scripts_repo_envoy.sh"
-      dest: "/tmp"
-      mode: a+x
+        src: "/roles/envoyproxy/templates/scripts_repo_envoy.sh"
+        dest: "/tmp"
+        mode: a+x
 
     - name: Run a script with arguments (using 'cmd' parameter)
       ansible.builtin.script:
-      cmd: /bin/sh /tmp/scripts_repo_envoy.sh
-
+        cmd: /bin/sh /tmp/scripts_repo_envoy.sh
 
     - name: Update apt repo and cache on all Debian/Ubuntu boxes
       apt:
