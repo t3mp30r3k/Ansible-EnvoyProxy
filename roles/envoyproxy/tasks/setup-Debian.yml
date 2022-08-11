@@ -16,7 +16,7 @@
   
     - name: Copy Envoy Script to /tmp
       template:
-        src: "/roles/envoyproxy/templates/scripts_repo_envoy.sh"
+        src: "./templates/scripts_repo_envoy.sh"
         dest: "/tmp"
         mode: a+x
 
