@@ -28,8 +28,8 @@
 
     - name: somerepo | apt source
       ansible.builtin.apt_repository:
-      repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/getenvoy-keyring.gpg] https://deb.dl.getenvoy.io/public/deb/debian $(lsb_release -cs) main"
-      state: present
+        repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/getenvoy-keyring.gpg] https://deb.dl.getenvoy.io/public/deb/debian $(lsb_release -cs) main"
+        state: present
       
 #     - name: Copy Envoy Script to /tmp
 #       template:
