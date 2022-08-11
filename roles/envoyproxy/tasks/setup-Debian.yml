@@ -32,7 +32,7 @@
 #        curl -sSL {{ envoy_apt_gpg_key }} | sudo apt-key add -
       args:
         warn: false
-      when: add_repository_key is failed
+#       when: add_repository_key is failed
 #       tags: ["skip_ansible_lint"]
 
     - name: Update Envoy Repository | apt source
