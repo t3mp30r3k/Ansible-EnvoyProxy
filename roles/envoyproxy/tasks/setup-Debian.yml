@@ -30,6 +30,8 @@
       ansible.builtin.apt_repository:
         repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/getenvoy-keyring.gpg] https://deb.dl.getenvoy.io/public/deb/debian bullseye main"
         state: present
+        filename: envoy
+        update_cache: true
       
 #     - name: Copy Envoy Script to /tmp
 #       template:
