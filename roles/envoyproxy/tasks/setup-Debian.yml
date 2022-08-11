@@ -14,14 +14,23 @@
 - name: Install envoy proxy.
   block:
 
-  - name: Add an apt key by id from a keyserver
-    ansible.builtin.apt_key:
-      url: https://deb.dl.getenvoy.io/public/gpg.8115BA8E629CC074.key
+#   - name: Add an apt key by id from a keyserver
+#     ansible.builtin.apt_key:
+#       url: https://deb.dl.getenvoy.io/public/gpg.8115BA8E629CC074.key
+#       state: present
+#       id: a077cb587a1b622e03aa4bf2f3689de14658a9497a9af2c427bba5f4cc3c4723
+#       keyring: /usr/share/keyrings/getenvoy-keyring.gpg
+
+    - name: somerepo |no apt key
+      ansible.builtin.get_url:
+        url: https://deb.dl.getenvoy.io/public/gpg.8115BA8E629CC074.key
+        dest: /usr/share/keyrings/getenvoy-keyring.gpg
+
+    - name: somerepo | apt source
+      ansible.builtin.apt_repository:
+      repo: "deb [arch=amd64 signed-by=/usr/share/keyrings/getenvoy-keyring.gpg] https://deb.dl.getenvoy.io/public/deb/debian $(lsb_release -cs) main"
       state: present
-      id: a077cb587a1b622e03aa4bf2f3689de14658a9497a9af2c427bba5f4cc3c4723
-      keyring: /usr/share/keyrings/getenvoy-keyring.gpg
-
-
+      
 #     - name: Copy Envoy Script to /tmp
 #       template:
 #         src: "./templates/scripts_repo_envoy.sh"
