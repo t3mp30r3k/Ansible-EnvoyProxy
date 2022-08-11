@@ -3,12 +3,14 @@
   apt:
     name:
       - apt-transport-https
+      - debian-archive-keyring
       - ca-certificates
       - curl
+      - lsb-release
       - gnupg-agent
       - software-properties-common
     state: present
-
+    
 - name: Install envoy proxy.
   block:
     - name: (Debian) Add envoy apt key.
@@ -20,7 +22,8 @@
 
     - name: Add Envoy apt key (alternative for older systems without SNI).
       shell: >
-        curl -sSL {{ envoy_apt_gpg_key }} | sudo apt-key add -
+#        curl -sSL {{ envoy_apt_gpg_key }} | sudo apt-key add -
+        curl -sL 'https://deb.dl.getenvoy.io/public/gpg.{{ envoy_gpg_key }}.key' | sudo gpg --dearmor -o /usr/share/keyrings/getenvoy-keyring.gpg
       args:
         warn: false
       when: add_repository_key is failed
