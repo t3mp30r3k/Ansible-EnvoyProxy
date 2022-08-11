@@ -1,4 +1,4 @@
-- name: Intall Envoy Proxy
+- name: Install Envoy Proxy
   hosts: servers
   become: yes
   become_method: sudo
