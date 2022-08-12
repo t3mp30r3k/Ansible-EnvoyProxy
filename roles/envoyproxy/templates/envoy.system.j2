@@ -1,14 +1,10 @@
-[Unit]
-Description=Envoy Proxy and Load Balancer
+Description=Envoy Load Balance for Sertifikasiku
+After=network.target
 
 [Service]
-User=root
-Group=root
-ExecStart=/usr/bin/envoy --base-id 1 -c /opt/envoy/envoy.yaml
-ExecReload=/bin/kill -HUP $MAINPID
-ExecStop=/bin/kill -TERM $MAINPID
-Restart=always
-RestartSec=30
+Type=simple
+ExecStart=/usr/bin/envoy --config-path /opt/envoy/envoy.yaml
+TimeoutStartSec=0
 
 [Install]
-WantedBy=multi-user.target
+WantedBy=default.target
