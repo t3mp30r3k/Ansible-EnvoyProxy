@@ -9,7 +9,7 @@
 
 - name: "Create envoy directory"
   file:
-    path: /etc/envoy/
+    path: /opt/envoy/
     state: directory
     owner: root
     group: root
@@ -24,5 +24,5 @@
     mode: "0777"
   loop:
     - { src: envoy.system.j2, dest: /etc/systemd/system/envoy.service }
-    - { src: envoy.yaml.j2, dest: /etc/envoy/envoy.yaml }
+    - { src: envoy.yaml.j2, dest: /opt/envoy/envoy.yaml }
   notify: restart envoy

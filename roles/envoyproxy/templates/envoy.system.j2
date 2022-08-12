@@ -1,10 +1,10 @@
 [Unit]
-Description=Envoy Proxy
+Description=Envoy Proxy and Load Balancer
 
 [Service]
 User=root
 Group=root
-ExecStart=/usr/bin/envoy --base-id 1 -c /etc/envoy/envoy.yaml
+ExecStart=/usr/bin/envoy --base-id 1 -c /opt/envoy/envoy.yaml
 ExecReload=/bin/kill -HUP $MAINPID
 ExecStop=/bin/kill -TERM $MAINPID
 Restart=always

@@ -1,9 +1,9 @@
 ---
 galaxy_info:
   role_name: envoyproxy
-  author: Fabio Coelho
+  author: rusdianto@gmail.com
   description: Create an Envoy Proxy
-  company: GPiT Consultoria
+  company: kangoprek.com
 
   license: license (BSD, MIT)
 
