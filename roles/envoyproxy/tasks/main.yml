@@ -7,7 +7,7 @@
     name: "{{ envoy_package }}"
     state: "{{ envoy_package_state }}"
 
-- name: "Create envoy directory"
+- name: Create envoy directory
   file:
     path: /opt/envoy/
     state: directory
@@ -15,7 +15,27 @@
     group: root
     mode: "0777"
 
-- name: Copy templates
+- name: Create envoy SSL Certificate directory
+  file:
+    path: /opt/envoy/cert
+    state: directory
+    owner: root
+    group: root
+    mode: "0777"
+
+- name: Copy SSL Certificate
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: root
+    group: root
+    mode: "0777"
+  loop:
+    - { src: certificate.crt, dest: /opt/envoy/cert/certificate.crt }
+    - { src: private.key, dest: /opt/envoy/cert/private.key }
+    - { src: ca_bundle.crt, dest: /opt/envoy/cert/ca_bundle.crt }
+
+- name: Copy envoy templates
   template:
     src: "{{ item.src }}"
     dest: "{{ item.dest }}"

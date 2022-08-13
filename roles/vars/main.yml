@@ -1,1 +1,4 @@
 envoy_admin_port: 8899
+envoy_domain_name: example.com
+envoy_endpoint01_ipaddr: 10.10.10.128
+envoy_endpoint01_port: 8000
